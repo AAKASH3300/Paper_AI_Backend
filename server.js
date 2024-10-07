@@ -12,7 +12,7 @@ connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log('MongoDB connection error:', err));
 
-app.use('/api/evaluation-results', evaluationResultsRoute);
+app.use('/api', evaluationResultsRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

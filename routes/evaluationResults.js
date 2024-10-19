@@ -1,10 +1,9 @@
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import EvaluationResult from '../models/EvaluationResult.js';
+import multer from 'multer';
 
-const express = require('express');
-const jwt = require('jsonwebtoken');
 const router = express.Router();
-const EvaluationResult = require('../models/EvaluationResult');
-const multer = require('multer');
-
 const upload = multer({ storage: multer.memoryStorage() }); 
 
 const secretKey = process.env.JWT_SECRET;
@@ -62,4 +61,4 @@ router.post('/save', upload.fields([{ name: 'photo', maxCount: 1 }, { name: 'sca
     }
 });
 
-module.exports = router;
+export default router;

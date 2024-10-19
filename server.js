@@ -1,9 +1,9 @@
-const express = require('express');
-const { connect } = require('mongoose');
-const { config } = require('dotenv');
-const cors = require('cors'); 
-const authRoutes = require('./routes/auth');
-const evaluationResultsRoute = require('./routes/evaluationResults');
+import express from 'express';
+import { connect } from 'mongoose';
+import { config } from 'dotenv';
+import cors from 'cors'; 
+import authRoutes from './routes/auth.js';
+import evaluationResultsRoute from './routes/evaluationResults.js';
 
 config();
 

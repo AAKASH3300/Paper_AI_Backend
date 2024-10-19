@@ -1,5 +1,4 @@
-
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const evaluationResultSchema = new mongoose.Schema({
     _id: { type: String, required: true }, 
@@ -14,4 +13,4 @@ const evaluationResultSchema = new mongoose.Schema({
     scannedPdf: { type: Buffer }                      
 }, { collection: 'Students_result' });
 
-module.exports = mongoose.model('EvaluationResult', evaluationResultSchema);
+export default mongoose.model('EvaluationResult', evaluationResultSchema);

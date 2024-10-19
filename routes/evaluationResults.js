@@ -34,11 +34,11 @@ router.get('/results/:rollNo', async (req, res) => {
     }
 });
 
-// POST route to save evaluation result with photo and scanned PDF
-router.post('/save', upload.fields([{ name: 'photo', maxCount: 1 }, { name: 'scannedPdf', maxCount: 1 }]), async (req, res) => {
+// POST route to save evaluation result with photos and scanned PDF
+router.post('/save', upload.fields([{ name: 'photos', maxCount: 10 }, { name: 'scannedPdf', maxCount: 1 }]), async (req, res) => {
     try {
         const { rollNo, name, section, class: className, scores, totalScore, maxPossibleScore, unansweredQuestions } = req.body;
-        const photoFile = req.files['photo'] ? req.files['photo'][0] : null;
+        const photoFiles = req.files['photos'] || [];
         const pdfFile = req.files['scannedPdf'] ? req.files['scannedPdf'][0] : null;
 
         const newResult = new EvaluationResult({
@@ -46,7 +46,7 @@ router.post('/save', upload.fields([{ name: 'photo', maxCount: 1 }, { name: 'sca
             name,
             section,
             class: className,
-            photo: photoFile ? photoFile.buffer : undefined,
+            photo: photoFiles ? photoFiles.map(file => file.buffer) : undefined,
             scores: JSON.parse(scores), 
             totalScore,
             maxPossibleScore,

@@ -5,7 +5,7 @@ const evaluationResultSchema = new mongoose.Schema({
     name: { type: String, required: true },           
     section: { type: String, required: true },        
     class: { type: String, required: true },          
-    photo: { type: Buffer },                          
+    photo: { type: [Buffer] },  // Changed to an array of Buffers
     scores: { type: [Number], required: true },
     totalScore: { type: Number, required: true },
     maxPossibleScore: { type: Number, required: true },
